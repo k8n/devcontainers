@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3"
 
 services:
 
@@ -10,102 +10,8 @@ services:
     command: sleep infinity
     ports:
       - "${APP_PORT:-8000}:8000"
-
-  # mariadb:
-  #   image: mariadb:10.5
-  #   environment:
-  #     - MYSQL_ROOT_PASSWORD=root
-  #     - MYSQL_DATABASE=developer
-  #     - MYSQL_USER=developer
-  #     - MYSQL_PASSWORD=developer
-  #   volumes:
-  #     - mysql:/var/lib/mysql
-  #   ports:
-  #     - "${FORWARD_DB_PORT:-3306}:3306"
-
-  # mysql:
-  #   image: mysql:8.0
-  #   environment:
-  #     - MYSQL_ROOT_PASSWORD=root
-  #     - MYSQL_DATABASE=developer
-  #     - MYSQL_USER=developer
-  #     - MYSQL_PASSWORD=developer
-  #   ports:
-  #     - "${FORWARD_DB_PORT:-3306}:3306"
-  #   volumes:
-  #     - mysql:/var/lib/mysql
-
-  # postgres:
-  #   image: postgres:13.0
-  #   environment:
-  #     - POSTGRES_PASSWORD=developer
-  #     - POSTGRES_USER=developer
-  #     - POSTGRES_DB=developer
-  #     - PGDATA=/var/lib/postgresql/data/pgdata
-  #   ports:
-  #     - "${FORWARD_DB_PORT:-5432}:5432"
-  #   volumes:
-  #     - postgres:/var/lib/postgresql/data
-  #
-  # mongo:
-  #   image: mongo:4.4
-  #   environment:
-  #     - MONGO_INITDB_ROOT_USERNAME=root
-  #     - MONGO_INITDB_ROOT_PASSWORD=root
-  #     - MONGO_INITDB_DATABASE=developer
-  #   ports:
-  #     - "${FORWARD_MONGO_PORT:-27017}:27017"
-  #   volumes:
-  #     - mongo:/data/db
-
-  # elasticsearch:
-  #   image: elasticsearch:7.9.2
-  #   environment:
-  #     - discovery.type=single-node
-  #   ports:
-  #     - "${FORWARD_DB_PORT:-9200}:9200"
-  #   volumes:
-  #     - elasticsearch:/usr/share/elasticsearch/data
-  #
-  # redis:
-  #   image: redis:6.0-alpine
-  #
-  # memcached:
-  #   image: memcached:1.6-alpine
-  #
-  # mailhog:
-  #   image: mailhog/mailhog
-  #   ports:
-  #     - "${FORWARD_MAILHOG_PORT:-8025}:8025"
-
-  # minio:
-  #   image: minio/minio
-  #   environment:
-  #     - MINIO_ACCESS_KEY=minio
-  #     - MINIO_SECRET_KEY=minio123
-  #   command: minio server /data
-  #   ports:
-  #     - "${FORWARD_MINIO_PORT:-9000}:9000"
-  #   volumes:
-  #     - minio:/data
-  #   healthcheck:
-  #     test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
-  #     interval: 30s
-  #     timeout: 20s
-  #     retries: 3
-
-  # adminer:
-  #   image: adminer
-  #   environment:
-  #     - ADMINER_DEFAULT_SERVER=mariadb
-  #   ports:
-  #     - "${FORWARD_ADMINER_PORT:-8080}:8080"
+      - "${TEST_VAR}":8443
 
 volumes:
   projects:
   user:
-  # mysql:
-  # postgres:
-  # mongo:
-  # elasticsearch:
-  # minio:
