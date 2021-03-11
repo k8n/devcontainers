@@ -3,6 +3,8 @@
     "dockerComposeFile": "../docker-compose.yml",
     "service": "dev",
     "workspaceFolder": "/projects/workspace",
+    // https://github.com/microsoft/vscode-remote-release/issues/4585#issuecomment-792810116
+    // initializeCommand": "cp $(pwd)/.env /",
     "shutdownAction": "stopCompose",
     "settings": {
         "css.validate": false,
