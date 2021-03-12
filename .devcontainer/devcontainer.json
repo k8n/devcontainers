@@ -3,8 +3,23 @@
     "dockerComposeFile": "../docker-compose.yml",
     "service": "dev",
     "workspaceFolder": "/projects/workspace",
+    // compose volumes are keyed by target when definitions are merged when extended
+    // this would theoretically replace the prepared/mounted code volume
+    // "workspaceMount": "source=${uniqueVolumeName},target=${containerWorkspaceFolder},type=bind,consistency=cached",
+    
     // https://github.com/microsoft/vscode-remote-release/issues/4585#issuecomment-792810116
     // initializeCommand": "cp $(pwd)/.env /",
+    // "containerEnv": {
+    //     "localWorkspaceFolder": "${localWorkspaceFolder}",
+    //     "C_VARIABLE": "${localWorkspaceFolder}" // "${localEnv:MY_VARIABLE}"
+    // },
+    "remoteEnv": {
+        "R_VARIABLE": "${containerEnv:PATH}",
+        "TEST_VAR": "1234",
+        "localWorkspaceFolder": "${localWorkspaceFolder}"
+    },
+    "initializeCommand": "env; echo Value ${localWorkspaceFolder}",
+    // "initializeCommand": "apk add bash; ./.devcontainer/init ${localWorkspaceFolder}",
     "shutdownAction": "stopCompose",
     "settings": {
         "css.validate": false,

@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+FILENAME="$1/.env"
+
+if ! [ -f $FILENAME ]; then
+    touch $FILENAME
+fi
+
+# New env vars should be added here.
+
+envVars=(
+    "DB_HOST=postgres"
+    "DB_PORT=5432"
+    "LARAVEL_SAIL=1"
+)
+
+is_addition_needed() {
+    for envVar in ${envVars[@]}; do
+        if ! grep -Fxq "$envVar" $FILENAME
+        then
+            return 1
+        fi
+    done
+    
+    return 0
+}
+
+add_values() {
+    for envVar in ${envVars[@]}; do
+        if ! grep -Fxq "$envVar" $FILENAME
+        then
+            echo "$envVar" >> $FILENAME
+        fi
+    done
+}
+
+echo "ENV:"
+env
+
+echo "value passed:"
+echo $1
+echo "PWD"
+pwd
+
+# Check if the comments should be added
+# is_addition_needed
+# should_add_warnings=$?
+
+# if [ $should_add_warnings -eq 1 ];
+# then
+#     echo "" >> $FILENAME
+#     echo "# Begin VSCode devcontainer Environment. DO NOT REMOVE" >> $FILENAME
+# fi
+
+# echo $FILENAME
+# add_values
+
+# if [ $should_add_warnings -eq 1 ];
+# then
+#     echo "# End VSCode devcontainer Environment. DO NOT REMOVE" >> $FILENAME
+#     echo "" >> $FILENAME
+# fi
